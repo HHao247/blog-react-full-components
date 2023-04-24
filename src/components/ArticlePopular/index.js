@@ -5,7 +5,7 @@ import './popular-news-list.css'
 
 function ArticlePopular() {
 
-  const postsPopular = useSelector((state)=>state.POPULAR.postsPopular);
+  const postsPopular = useSelector((state)=>state.POST.postsPopular);
   return (
     <div className="popular-news section bg-white-blue">
       <div className="tcl-container">

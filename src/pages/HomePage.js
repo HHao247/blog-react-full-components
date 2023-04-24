@@ -3,10 +3,7 @@ import ArticleGeneral from "../components/ArticleGeneral";
 import ArticleLatest from "../components/ArticleLatest";
 import ArticlePopular from "../components/ArticlePopular";
 import { useEffect } from "react";
-import { actFetchArticlesLatestAsync } from "../store/latestArticle/actions";
-import { actFetchArticlesPopularAsync } from "../store/popularArticles/actions";
-import { actFetchArticlesGeneralAsync } from "../store/generalArticles/actions";
-
+import { actFetchArticlesGeneralAsync, actFetchArticlesLatestAsync, actFetchArticlesPopularAsync } from "../store/post/actions";
 function HomePage() {
 
   const dispatch = useDispatch();

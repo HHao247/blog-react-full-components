@@ -43,3 +43,24 @@ export function pubDate (str){
   const date= dayjs(string).fromNow()
   return date
 }
+
+export function mappingMenuData(item) {
+  return {
+    id: item.ID,
+    title: item.title,
+    childItems: item.child_items ? item.child_items.map(mappingMenuData) : [],
+  };
+}
+
+export function renderMenus(menus) {
+  return menus.map((item) => (
+    <li key={item.id}>
+      {item.title}
+      {item.childItems.length > 0 && (
+        <ul>
+          {renderMenus(item.childItems)}
+        </ul>
+      )}
+    </li>
+  ))
+}

@@ -5,7 +5,7 @@ import PostDetailSidebar from "../components/PostDetail/PostDetailSidebar"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { actGetPostDetailAsync } from "../store/postDetailArticles/actions"
+import { actGetPostDetailAsync } from "../store/post/actions"
 
 function PostDetailPage() {
   const params = useParams();
@@ -18,23 +18,22 @@ function PostDetailPage() {
       setWait(true);
     })
   }, [slug]);
-  const postDetail = useSelector((state) => state.DETAIL.postDetail);
-  console.log("postDetail", postDetail);
+  const postDetail = useSelector((state) => state.POST.postDetail);
   if (wait === false) return <></>
   return (
     <main className="post-detail">
       <div className="spacing" />
 
-      <PostDetailHead />
+      <PostDetailHead data={postDetail[0]}/>
 
       <div className="spacing" />
 
       <div className="post-detail__fluid">
         <div className="tcl-container">
           <div className="post-detail__wrapper">
-            <PostDetailContent />
+            <PostDetailContent data={postDetail[0]} />
 
-            <PostDetailSidebar />
+            <PostDetailSidebar data={postDetail[0]}/>
           </div>
         </div>
       </div>

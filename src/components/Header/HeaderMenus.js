@@ -1,12 +1,18 @@
+
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { renderMenus } from '../../helpers';
 
 function HeaderMenus() {
+  const menu = useSelector(state => state.MENU.menus);
+  console.log(menu);
+  
   return (
     <div className="tcl-col-6">
       {/* Nav */}
       <div className="header-nav">
         <ul className="header-nav__lists">
-          <li>
+          {/* <li>
             <a href="/">Home</a>
           </li>
           <li>
@@ -47,7 +53,8 @@ function HeaderMenus() {
                 </ul>
               </li>
             </ul>
-          </li>
+          </li> */}
+          {renderMenus(menu)}
         </ul>
         <ul className="header-nav__lists">
           <li className="user">
@@ -57,6 +64,8 @@ function HeaderMenus() {
           </li>
         </ul>
       </div>
+      
+
     </div>
   );
 }
