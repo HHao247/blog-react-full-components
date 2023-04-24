@@ -10,7 +10,7 @@ import { actGetPostDetailAsync } from "../store/post/actions"
 function PostDetailPage() {
   const params = useParams();
   const slug = params.slug;
-  console.log(slug);
+  // console.log(slug);
   const dispatch = useDispatch();
   const [wait, setWait] = useState(false)
   useEffect(() => {

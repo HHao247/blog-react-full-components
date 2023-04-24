@@ -3,7 +3,7 @@ import './header.css'
 import HeaderLogo from './HeaderLogo'
 import HeaderMenus from './HeaderMenus'
 import HeaderSearch from './HeaderSearch'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { actFetchAllMenusAsync } from '../../store/menu/actions'
 
 function Header() {
