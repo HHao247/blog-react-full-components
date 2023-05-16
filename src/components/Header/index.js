@@ -6,6 +6,7 @@ import HeaderSearch from './HeaderSearch'
 import { useDispatch } from 'react-redux'
 import { actFetchAllMenusAsync } from '../../store/menu/actions'
 
+
 function Header() {
   const dispatch = useDispatch()
   useEffect(() => {

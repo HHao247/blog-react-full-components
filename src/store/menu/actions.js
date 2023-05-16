@@ -15,6 +15,7 @@ export function actFetchAllMenusAsync() {
   return async (dispatch) => {
     const response = await menuService.getAll();
     const data = response.data.items;
+    // console.log("data menu ",data);
     const menus = data.map(mappingMenuData);
     dispatch(actFetchAllMenus(menus));
   };

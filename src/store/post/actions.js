@@ -1,3 +1,4 @@
+
 import { mappingPostData } from '../../helpers';
 import postService from '../../services/postService';
 
@@ -6,20 +7,43 @@ export const ACT_FETCH_ARTICLES_LATEST = 'ACT_FETCH_ARTICLES_LATEST';
 export const ACT_FETCH_ARTICLES_POPULAR = 'ACT_FETCH_ARTICLES_POPULAR';
 export const ACT_FETCH_ARTICLES_GENERAL = 'ACT_FETCH_ARTICLES_GENERAL';
 export const ACT_FETCH_DETAIL_PAGE = 'ACT_FETCH_DETAIL_PAGE';
+export const ACT_SEARCH = 'ACT_SEARCH';
 
-
+export function actFetchSearch(posts) {
+	return {
+		type: ACT_SEARCH,
+		payload: posts,
+	}
+}
+export function actFetchSearchAsync(queryStrURI) {
+	console.log(queryStrURI);
+	return async (dispatch) => {
+		const response = await postService.getPostSearch(queryStrURI);
+		const posts = response.data.map(mappingPostData);
+		// console.log("search",posts);
+		dispatch(actFetchSearch(posts));
+	}
+}
 export function actGetPostDetail(posts) {
 	return {
 		type: ACT_FETCH_DETAIL_PAGE,
 		payload: posts,
 	}
 }
+// export function actGetPostDetailAsync(slug) {
+// 	return async (dispatch) => {
+// 		const response = await postService.getPostDetail(slug);
+// 		const posts = response.data.map(mappingPostData);
+// 		// console.log(posts);
+// 		dispatch(actGetPostDetail(posts))
+// 	}
+// }
 export function actGetPostDetailAsync(slug) {
 	return async (dispatch) => {
 		const response = await postService.getPostDetail(slug);
 		const posts = response.data.map(mappingPostData);
-		console.log(posts);
-		dispatch(actGetPostDetail(posts))
+		// console.log(posts);
+		dispatch(actGetPostDetail(posts[0]))
 	}
 }
 

@@ -3,6 +3,7 @@ import ArticleItem from "../ArticleItem";
 import Button from "../shared/Button";
 import MainTitle from "../shared/MainTitle";
 import { actFetchArticlesGeneralAsync } from "../../store/post/actions";
+import { useState } from "react";
 
 
 function ArticleGeneral() {
@@ -11,8 +12,12 @@ function ArticleGeneral() {
   const totalPage = useSelector((state) => state.POST.postsGeneral.totalPage);
   const dispatch = useDispatch()
   const handleMore = () => {
-    dispatch(actFetchArticlesGeneralAsync(currentPage + 1));
+    setLoading(true);
+    dispatch(actFetchArticlesGeneralAsync(currentPage + 1)).then(()=>{
+      setLoading(false);
+    });
   };
+  const [loading,setLoading] = useState(false);
 
 
   return (
@@ -45,7 +50,7 @@ function ArticleGeneral() {
         <div className="text-center">
           {
             currentPage < totalPage && (
-              <Button type="primary" size="large" loading={true} onClick={handleMore}>Tải thêm</Button>
+              <Button type="primary" size="large" loading={loading} onClick={handleMore}>Tải thêm</Button>
             )
           }
         </div>

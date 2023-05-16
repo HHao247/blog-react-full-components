@@ -22,7 +22,14 @@ const postService = {
 
 		return this.getAll({slug:{slug}})
 
-	}
+	},
+	getPostSearch: function (queryStrURI) {
+    return this.getAll({ 
+      per_page: 3, 
+      page: 1, 
+      search: queryStrURI
+    })
+  }
 
 }
 export default postService;

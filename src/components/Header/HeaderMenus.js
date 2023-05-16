@@ -5,7 +5,7 @@ import { renderMenus } from '../../helpers';
 
 function HeaderMenus() {
   const menu = useSelector(state => state.MENU.menus);
-  console.log(menu);
+  // console.log(menu);
   
   return (
     <div className="tcl-col-6">

@@ -21,12 +21,12 @@ function ArticlePopular() {
             <div className="popular-news__list--row">
               {/* Popular news card */}
               <div className="popular-news__list--card">
-                <ArticleItem isShowAvatar isStyleCard isShowDesc  data={postsPopular[0]}/>
+                <ArticleItem isShowAvatar isStyleCard isShowDesc  data={postsPopular[0]} isShowCategoies/>
               </div>
               {/* End Popular news card */}
               {/* Popular news card */}
               <div className="popular-news__list--card">
-                <ArticleItem isShowAvatar isStyleCard isShowDesc data={postsPopular[1]}/>
+                <ArticleItem isShowAvatar isStyleCard isShowDesc data={postsPopular[1]} isShowCategoies/>
               </div>
               {/* End Popular news card */}
             </div>
@@ -35,7 +35,7 @@ function ArticlePopular() {
             <div className="popular-news__list--row">
               {/* Popular news card */}
               <div className="popular-news__list--card">
-                <ArticleItem isShowAvatar isStyleCard isShowDesc isStyleRow data={postsPopular[2]}/>
+                <ArticleItem isShowAvatar isStyleCard isShowDesc isStyleRow data={postsPopular[2]} isShowCategoies/>
               </div>
               {/* End Popular news card */}
             </div>

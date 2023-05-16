@@ -24,16 +24,17 @@ function PostDetailPage() {
     <main className="post-detail">
       <div className="spacing" />
 
-      <PostDetailHead data={postDetail[0]}/>
+      {/* <PostDetailHead data={postDetail[0]} /> */}
+      <PostDetailHead data={postDetail} />
 
       <div className="spacing" />
 
       <div className="post-detail__fluid">
         <div className="tcl-container">
           <div className="post-detail__wrapper">
-            <PostDetailContent data={postDetail[0]} />
+            <PostDetailContent data={postDetail} />
 
-            <PostDetailSidebar data={postDetail[0]}/>
+            <PostDetailSidebar data={postDetail} />
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 
-import { ACT_FETCH_ARTICLES_GENERAL, ACT_FETCH_ARTICLES_LATEST, ACT_FETCH_ARTICLES_POPULAR, ACT_FETCH_DETAIL_PAGE } from './actions';
+import { ACT_FETCH_ARTICLES_GENERAL, ACT_FETCH_ARTICLES_LATEST, ACT_FETCH_ARTICLES_POPULAR, ACT_FETCH_DETAIL_PAGE, ACT_SEARCH } from './actions';
 
 
 const initState = {
@@ -11,6 +11,7 @@ const initState = {
     totalPage: 0
   },
   postDetail:[],
+  postSearch:[],
 };
 
 function reducer(state = initState, action) {
@@ -20,10 +21,10 @@ function reducer(state = initState, action) {
         ...state,
         postsLatest: action.payload,
       };
-    case ACT_FETCH_ARTICLES_POPULAR:
-      return {
-        ...state,
-        postsPopular: action.payload,
+      case ACT_FETCH_ARTICLES_POPULAR:
+        return {
+          ...state,
+          postsPopular: action.payload,
       };
     case ACT_FETCH_ARTICLES_GENERAL:
       return {
@@ -35,13 +36,18 @@ function reducer(state = initState, action) {
           list: action.payload.currentPage === 1 ? action.payload.posts : [...state.postsGeneral.list, ...action.payload.posts]
         },
       };
-    case ACT_FETCH_DETAIL_PAGE:
-      return {
-        ...state,
-        postDetail: action.payload,
-      };
-    default:
-      return state;
+      case ACT_FETCH_DETAIL_PAGE:
+        return {
+          ...state,
+          postDetail: action.payload,
+        };
+        case ACT_SEARCH:
+          return {
+            ...state,
+            postSearch: action.payload,
+          };
+        default:
+          return state;
   }
 }
 export default reducer;

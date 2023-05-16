@@ -1,3 +1,5 @@
+
+import { useEffect } from 'react';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
@@ -5,14 +7,19 @@ import LoginPage from './pages/LoginPage';
 import PostDetailPage from './pages/PostDetailPage';
 import RegisterPage from './pages/RegisterPage';
 import SearchPage from './pages/SearchPage';
-
 import {
   BrowserRouter,
   Route,
   Switch
 } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { actGetListCategoriesAsync } from './store/categories/actions';
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actGetListCategoriesAsync());
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <div className="wrapper-content">
