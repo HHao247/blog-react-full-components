@@ -1,11 +1,16 @@
 
-export function getQueryStr(name,locationSearch) {
+export function getQueryStr(name, locationSearch) {
   return new URLSearchParams(locationSearch).get(name)
 }
 export function abs(name) {
   return new URLSearchParams(window.location.search).get(name)
 }
 
+export function format(string) {
+  let excerpt = string.excerpt.rendered.replace('<p>', '');
+  excerpt = excerpt.replace('</p>', '');
+  return excerpt;
+}
 export function mappingPostData(item) {
   let shortDesc = item.excerpt.rendered.replace('<p>', '');
   shortDesc = shortDesc.replace('</p>', '');
@@ -20,7 +25,8 @@ export function mappingPostData(item) {
     authorName: item.author_data.nickname,
     slug: item.slug,
     date: item.date,
-    categoriesId: item.categories
+    categoriesId: item.categories,
+    detailContent: item.content.rendered
   };
 }
 
@@ -76,7 +82,7 @@ export function renderMenus(menus) {
   ))
 }
 export function renderCategories(categories, categoriesId) {
-  
+
   const mapCategories = categories.reduce(
     (list, item) => ({ ...list, [item.id]: item }),
     {}
