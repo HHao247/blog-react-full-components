@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { renderMenus } from '../../helpers';
 
+
 function HeaderMenus() {
   const menu = useSelector(state => state.MENU.menus);
-  // console.log(menu);
-  
+  const user = useSelector(state => state.USER)
+
+
   return (
     <div className="tcl-col-6">
       {/* Nav */}
@@ -64,7 +66,7 @@ function HeaderMenus() {
           </li>
         </ul>
       </div>
-      
+
 
     </div>
   );

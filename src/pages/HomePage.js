@@ -4,7 +4,6 @@ import ArticleLatest from "../components/ArticleLatest";
 import ArticlePopular from "../components/ArticlePopular";
 import { useEffect } from "react";
 import { actFetchArticlesGeneralAsync, actFetchArticlesLatestAsync, actFetchArticlesPopularAsync } from "../store/post/actions";
-import { actGetListCategoriesAsync } from "../store/categories/actions";
 function HomePage() {
 
   const dispatch = useDispatch();
