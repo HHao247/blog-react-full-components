@@ -16,7 +16,7 @@ function RegisterPage() {
       nickname: ''
     })
 
-  const formDataLogin = {
+  const dataLogin = {
     username: formData.username,
     password: formData.password
   }
@@ -36,7 +36,7 @@ function RegisterPage() {
     e.preventDefault();
     dispatch(actRegisterAsync(formData)).then((response) => {
       if (response.ok) {
-        dispatch(actLoginAsync(formDataLogin)).then((response) => {
+        dispatch(actLoginAsync(dataLogin)).then((response) => {
           if (response.ok) {
             history.push('/')
           } else {
