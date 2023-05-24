@@ -6,7 +6,10 @@ import { renderMenus } from '../../helpers';
 
 function HeaderMenus() {
   const menu = useSelector(state => state.MENU.menus);
-  const user = useSelector(state => state.USER)
+  const currentUser = useSelector(state => state.USER.currentUser)
+  console.log(currentUser);
+
+  // console.log(currentUser.name);
 
 
   return (
@@ -60,9 +63,18 @@ function HeaderMenus() {
         </ul>
         <ul className="header-nav__lists">
           <li className="user">
-            <Link to="/login">
-              <i className="icons ion-person" /> Tài khoản
-            </Link>
+            {
+              currentUser &&
+              <Link to="/login">
+                <i className="icons ion-person" /> ${currentUser?.name}
+              </Link>
+            }
+            {
+              !currentUser &&
+              <Link to="/login">
+                <i className="icons ion-person" /> Tài khoản
+              </Link>
+            }
           </li>
         </ul>
       </div>

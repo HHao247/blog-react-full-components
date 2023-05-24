@@ -20,7 +20,6 @@ export function actFetchSearchAsync(queryStrURI) {
 	return async (dispatch) => {
 		const response = await postService.getPostSearch(queryStrURI);
 		const posts = response.data.map(mappingPostData);
-		// console.log("search",posts);
 		dispatch(actFetchSearch(posts));
 	}
 }
@@ -30,19 +29,11 @@ export function actGetPostDetail(posts) {
 		payload: posts,
 	}
 }
-// export function actGetPostDetailAsync(slug) {
-// 	return async (dispatch) => {
-// 		const response = await postService.getPostDetail(slug);
-// 		const posts = response.data.map(mappingPostData);
-// 		// console.log(posts);
-// 		dispatch(actGetPostDetail(posts))
-// 	}
-// }
+
 export function actGetPostDetailAsync(slug) {
 	return async (dispatch) => {
 		const response = await postService.getPostDetail(slug);
 		const posts = response.data.map(mappingPostData);
-		// console.log(posts);
 		dispatch(actGetPostDetail(posts[0]))
 	}
 }

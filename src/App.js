@@ -14,10 +14,12 @@ import {
 } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { actGetListCategoriesAsync } from './store/categories/actions';
+import { actFetchMeAsync } from './store/user/actions';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(actFetchMeAsync())
     dispatch(actGetListCategoriesAsync());
   }, [dispatch]);
   return (

@@ -61,6 +61,7 @@ export function mappingMenuData(item) {
     childItems: item.child_items ? item.child_items.map(mappingMenuData) : [],
   };
 }
+
 export function mappingCategories(item) {
   return {
     id: item.id,
