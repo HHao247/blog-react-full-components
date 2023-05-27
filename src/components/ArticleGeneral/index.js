@@ -13,11 +13,11 @@ function ArticleGeneral() {
   const dispatch = useDispatch()
   const handleMore = () => {
     setLoading(true);
-    dispatch(actFetchArticlesGeneralAsync(currentPage + 1)).then(()=>{
+    dispatch(actFetchArticlesGeneralAsync(currentPage + 1)).then(() => {
       setLoading(false);
     });
   };
-  const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   return (
@@ -25,28 +25,13 @@ function ArticleGeneral() {
       <div className="tcl-container">
         {/* Main Title */}
         <MainTitle btnLabel="Xem them">Bai Viet Tong Hop</MainTitle>
-        {/* End Main Title */}
-        {/* End Row News List */}
         <div className="tcl-row">
-          {/* <div className="tcl-col-12 tcl-col-md-6">
-            <ArticleItem isStyleCard isShowAvatar={false} />
-          </div>
-          <div className="tcl-col-12 tcl-col-md-6">
-            <ArticleItem isStyleCard isShowAvatar={false} />
-          </div>
-          <div className="tcl-col-12 tcl-col-md-6">
-            <ArticleItem isStyleCard isShowAvatar={false} />
-          </div>
-          <div className="tcl-col-12 tcl-col-md-6">
-            <ArticleItem isStyleCard isShowAvatar={false} />
-          </div> */}
           {postsGeneral.map((item) => (
             <div key={item.id} className="tcl-col-12 tcl-col-md-6">
               <ArticleItem isStyleCard isShowAvatar={false} data={item} />
             </div>
           ))}
         </div>
-        {/* End Row News List */}
         <div className="text-center">
           {
             currentPage < totalPage && (
