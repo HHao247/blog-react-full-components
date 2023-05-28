@@ -15,15 +15,15 @@ const postService = {
 	getPopular: function () {
 		return this.getAll({ per_page: 3, page: 1, orderby: 'post_views' })
 	},
-	getGeneral: function (page = 1) {
-		return this.getAll({ per_page: 2, page, orderby: 'post_views' });
+	getPaging: function ({ page = 1, inputParams = {} }) {
+		return this.getAll({ per_page: 2, page, ...inputParams });
 	},
-	getPostDetail: function (slug) {
+	getPostDetail: function ({ slug }) {
 
 		return this.getAll({ slug: { slug } })
 
 	},
-	getPostSearch: function (queryStrURI) {
+	getPostSearch: function ({ queryStrURI }) {
 		return this.getAll({
 			per_page: 3,
 			page: 1,

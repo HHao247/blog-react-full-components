@@ -6,8 +6,6 @@ export const ACT_REGISTER = 'ACT_REGISTER';
 export const ACT_LOGOUT = 'ACT_LOGOUT';
 
 export function actLogin(token, currentUser) {
-  console.log(currentUser);
-  console.log(token);
   return {
     type: ACT_LOGIN,
     payload: {
@@ -63,8 +61,6 @@ export function actRegisterAsync(data) {
 
 
 export function actFetchMeAsync(token) {
-  console.log(token);
-  console.log("hảo");
   return async (dispatch) => {
     try {
       if (!token) {

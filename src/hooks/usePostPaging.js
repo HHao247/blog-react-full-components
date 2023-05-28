@@ -3,13 +3,13 @@ import Button from '../components/shared/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { actFetchArticlesPagingAsync } from '../store/post/actions';
 
-export function usePostPaging() {
-  const { list: posts, currentPage, totalPage } = useSelector((state) => state.POST.postPaging);
+export function usePostPaging(inputParams = {}) {
+  const { list: posts, currentPage, totalPage } = useSelector((state) => state.POST.postsPaging);
 
   const dispatch = useDispatch()
   const handleLoadMore = () => {
     setLoading(true);
-    dispatch(actFetchArticlesPagingAsync({ page: currentPage + 1 })).then((res) => {
+    dispatch(actFetchArticlesPagingAsync({ page: currentPage + 1, inputParams })).then((res) => {
       setLoading(false);
     });
   };

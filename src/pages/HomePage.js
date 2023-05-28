@@ -3,14 +3,14 @@ import ArticleGeneral from "../components/ArticleGeneral";
 import ArticleLatest from "../components/ArticleLatest";
 import ArticlePopular from "../components/ArticlePopular";
 import { useEffect } from "react";
-import { actFetchArticlesGeneralAsync, actFetchArticlesLatestAsync, actFetchArticlesPopularAsync } from "../store/post/actions";
+import { actFetchArticlesLatestAsync, actFetchArticlesPagingAsync, actFetchArticlesPopularAsync } from "../store/post/actions";
 function HomePage() {
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actFetchArticlesLatestAsync());
     dispatch(actFetchArticlesPopularAsync());
-    dispatch(actFetchArticlesGeneralAsync());
+    dispatch(actFetchArticlesPagingAsync());
   }, [dispatch]);
   return (
     <>

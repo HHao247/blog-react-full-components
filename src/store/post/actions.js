@@ -2,10 +2,9 @@
 import { mappingPostData } from '../../helpers';
 import postService from '../../services/postService';
 
-
 export const ACT_FETCH_ARTICLES_LATEST = 'ACT_FETCH_ARTICLES_LATEST';
 export const ACT_FETCH_ARTICLES_POPULAR = 'ACT_FETCH_ARTICLES_POPULAR';
-export const ACT_FETCH_ARTICLES_GENERAL = 'ACT_FETCH_ARTICLES_GENERAL';
+export const ACT_FETCH_ARTICLES_PAGING = 'ACT_FETCH_ARTICLES_PAGING';
 export const ACT_FETCH_DETAIL_PAGE = 'ACT_FETCH_DETAIL_PAGE';
 export const ACT_SEARCH = 'ACT_SEARCH';
 
@@ -49,6 +48,7 @@ export function actFetchArticlesLatestAsync() {
 	return async (dispatch) => {
 		const response = await postService.getLatest();
 		const posts = response.data.map(mappingPostData);
+
 		dispatch(actFetchArticlesLatest(posts));
 	};
 }
@@ -68,9 +68,9 @@ export function actFetchArticlesPopularAsync() {
 	};
 }
 
-export function actFetchArticlesGeneral(posts, currentPage, totalPage) {
+export function actFetchArticlesPaging({ posts, currentPage, totalPage }) {
 	return {
-		type: ACT_FETCH_ARTICLES_GENERAL,
+		type: ACT_FETCH_ARTICLES_PAGING,
 		payload: {
 			posts,
 			currentPage,
@@ -78,12 +78,12 @@ export function actFetchArticlesGeneral(posts, currentPage, totalPage) {
 		},
 	};
 }
-export function actFetchArticlesGeneralAsync(page = 1) {
+export function actFetchArticlesPagingAsync({ page = 1, inputParams = {} } = {}) {
 	return async (dispatch) => {
-		const response = await postService.getGeneral(page);
+		const response = await postService.getPaging({ page, inputParams });
 		const totalPage = parseInt(response.headers['x-wp-totalpages']);
 		const posts = response.data.map(mappingPostData)
-		dispatch(actFetchArticlesGeneral(posts, page, totalPage))
+		dispatch(actFetchArticlesPaging({ posts, currentPage: page, totalPage }))
 	}
 }
 

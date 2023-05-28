@@ -7,7 +7,8 @@ import { useSelector } from 'react-redux';
 function ArticleLatest(data) {
 
   const postsLatest = useSelector((state) => state.POST.postsLatest);
-  if(!data) return <></>
+  console.log(postsLatest)
+  if (!data) return <></>
   return (
     <div className="latest-news section">
       <div className="tcl-container">
@@ -18,22 +19,10 @@ function ArticleLatest(data) {
           {
             postsLatest.map((item) => (
               <div key={item.id} className="latest-news__card">
-                <ArticleItem  data={item}/>
+                <ArticleItem data={item} />
               </div>
             ))
           }
-          {/* <div className="latest-news__card">
-            <ArticleItem />
-          </div>
-
-          <div className="latest-news__card">
-            <ArticleItem />
-          </div>
-
-          <div className="latest-news__card">
-            <ArticleItem />
-          </div> */}
-
         </div>
       </div>
     </div>
