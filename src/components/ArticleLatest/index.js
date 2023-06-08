@@ -7,7 +7,6 @@ import { useSelector } from 'react-redux';
 function ArticleLatest(data) {
 
   const postsLatest = useSelector((state) => state.POST.postsLatest);
-  console.log(postsLatest)
   if (!data) return <></>
   return (
     <div className="latest-news section">

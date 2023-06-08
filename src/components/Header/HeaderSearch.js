@@ -1,11 +1,7 @@
 import Input from '../shared/Input'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { actFetchSearchAsync } from '../../store/post/actions'
-import { useDispatch } from 'react-redux'
-
 function HeaderSearch() {
-
 
   const history = useHistory()
   const [queryStr, setQueryStr] = useState('')
@@ -20,18 +16,17 @@ function HeaderSearch() {
     if (!queryStr) {
       return
     }
-
     const queryStrURI = encodeURIComponent(queryStr)
 
     history.push(`/search?q=${queryStrURI}&a=${Math.random()}`)
-    
+
   }
 
   return (
     <div className="tcl-col-4">
       {/* Header Search */}
       <form onSubmit={handleSubmit} >
-        <Input 
+        <Input
           type="search"
           placeholder="Nhap gia tri search ..."
           value={queryStr}

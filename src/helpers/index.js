@@ -6,8 +6,10 @@ export function abs(name) {
   return new URLSearchParams(window.location.search).get(name)
 }
 
+
+
 export function format(string) {
-  let excerpt = string.excerpt.rendered.replace('<p>', '');
+  let excerpt = string.replace('<p>', '');
   excerpt = excerpt.replace('</p>', '');
   return excerpt;
 }
@@ -23,6 +25,7 @@ export function mappingPostData(item) {
     excerpt,
     thumb: item.featured_media_url,
     authorName: item.author_data.nickname,
+    author: item.author,
     slug: item.slug,
     date: item.date,
     categoriesId: item.categories,

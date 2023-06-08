@@ -8,6 +8,7 @@ export function usePostPaging(inputParams = {}) {
 
   const dispatch = useDispatch()
   const handleLoadMore = () => {
+    if (loading) return;
     setLoading(true);
     dispatch(actFetchArticlesPagingAsync({ page: currentPage + 1, inputParams })).then((res) => {
       setLoading(false);

@@ -1,58 +1,36 @@
-import Button from "../components/shared/Button";
+
 import ArticleItem from "../components/ArticleItem";
 import MainTitle from "../components/shared/MainTitle";
 import { getQueryStr } from "../helpers";
-import { useDispatch, useSelector } from "react-redux";
-import { actFetchSearchAsync } from "../store/post/actions";
+import { useDispatch } from "react-redux";
+import { actFetchArticlesPagingAsync } from "../store/post/actions";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { usePostPaging } from "../hooks/usePostPaging";
 
 
 function SearchPage() {
   const location = useLocation();
   const dispatch = useDispatch()
-  const queryStr = getQueryStr('q', location.search)
-  console.log("queryStr", queryStr);
+  const keyword = getQueryStr('q', location);
+  const inputParams = { search: keyword };
+  const { posts, renderButtonLoadMore } = usePostPaging(inputParams);
+
   useEffect(() => {
-    dispatch(actFetchSearchAsync(queryStr))
-  }, [queryStr])
-  const postSearch = useSelector((state) => state.POST.postSearch);
+    dispatch(actFetchArticlesPagingAsync({ inputParams }))
+  }, [keyword, dispatch])
 
 
   return (
     <div className="articles-list section">
       <div className="tcl-container">
 
-        <MainTitle type="search">10 kết quả tìm kiếm với từ khóa "{queryStr}"</MainTitle>
+        <MainTitle type="search">10 kết quả tìm kiếm với từ khóa "{keyword}"</MainTitle>
 
         <div className="tcl-row tcl-jc-center">
-          {/* <div className="tcl-col-12 tcl-col-md-8">
-            <ArticleItem 
-              isStyleCard 
-              isShowCategoies 
-              isShowAvatar={false} 
-              isShowDesc={false} 
-            />
-          </div>
-          <div className="tcl-col-12 tcl-col-md-8">
-            <ArticleItem 
-              isStyleCard 
-              isShowCategoies 
-              isShowAvatar={false} 
-              isShowDesc={false} 
-            />
-          </div> */}
-          {/* <div className="tcl-col-12 tcl-col-md-8">
-            <ArticleItem
-              isStyleCard
-              isShowCategoies
-              isShowAvatar={false}
-              isShowDesc={false}
-            />
-          </div> */}
-          {postSearch.map((item) => {
+          {posts.map((item) => {
             return (
-              <div className="tcl-col-12 tcl-col-md-8">
+              <div className="tcl-col-12 tcl-col-md-8" key={item.id}>
                 <ArticleItem
                   isShowCategoies
                   isShowDesc
@@ -66,7 +44,8 @@ function SearchPage() {
         </div>
 
         <div className="text-center">
-          <Button type="primary" size="large">Tải thêm</Button>
+
+          {renderButtonLoadMore()}
 
         </div>
       </div>

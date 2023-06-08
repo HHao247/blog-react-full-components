@@ -7,7 +7,6 @@ import { renderMenus } from '../../helpers';
 function HeaderMenus() {
   const menu = useSelector(state => state.MENU.menus);
   const currentUser = useSelector(state => state.USER.currentUser)
-
   return (
     <div className="tcl-col-6">
       {/* Nav */}
@@ -20,7 +19,7 @@ function HeaderMenus() {
             {
               currentUser &&
               <Link to="/login">
-                <i className="icons ion-person" /> ${currentUser?.name}
+                <i className="icons ion-person" /> {currentUser?.name}
               </Link>
             }
             {

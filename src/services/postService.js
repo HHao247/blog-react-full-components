@@ -18,8 +18,7 @@ const postService = {
 	getPaging: function ({ page = 1, inputParams = {} }) {
 		return this.getAll({ per_page: 2, page, ...inputParams });
 	},
-	getPostDetail: function ({ slug }) {
-
+	getPostDetail: function (slug) {
 		return this.getAll({ slug: { slug } })
 
 	},
@@ -29,7 +28,10 @@ const postService = {
 			page: 1,
 			search: queryStrURI
 		})
-	}
+	},
+	getPostRelated: function (author, id) {
+		return this.getAll({ per_page: 3, page: 1, author, id })
+	},
 
 }
 export default postService;

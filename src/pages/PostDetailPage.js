@@ -6,35 +6,33 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { actGetPostDetailAsync } from "../store/post/actions"
+import IconLoading from "../components/shared/IconLoading"
 
 function PostDetailPage() {
   const params = useParams();
   const slug = params.slug;
-  // console.log(slug);
   const dispatch = useDispatch();
-  const [wait, setWait] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     dispatch(actGetPostDetailAsync(slug)).then(() => {
-      setWait(true);
+      setLoading(true)
     })
   }, [slug]);
   const postDetail = useSelector((state) => state.POST.postDetail);
-  if (wait === false) return <></>
+  if (loading === false) {
+    return <IconLoading />
+  }
   return (
     <main className="post-detail">
       <div className="spacing" />
-
-      {/* <PostDetailHead data={postDetail[0]} /> */}
       <PostDetailHead data={postDetail} />
-
       <div className="spacing" />
-
       <div className="post-detail__fluid">
         <div className="tcl-container">
           <div className="post-detail__wrapper">
             <PostDetailContent data={postDetail} />
 
-            <PostDetailSidebar data={postDetail} />
+            <PostDetailSidebar />
           </div>
         </div>
       </div>

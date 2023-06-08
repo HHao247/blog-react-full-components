@@ -1,9 +1,10 @@
+import { useSelector } from "react-redux";
 import { pubDate } from "../../helpers";
 
 
-function PostDetailHead({data}) {
-  console.log(data);
-  const { title, authorName, date}= data
+function PostDetailHead({ data }) {
+  const { title, authorName, date } = data
+
   return (
     <div className="post-detail__head">
       <div className="tcl-container">
@@ -14,7 +15,7 @@ function PostDetailHead({data}) {
             By <a href="/"><strong>{authorName}</strong></a>
           </li>
           <li className="item date">
-            {pubDate(date)}
+            {(date)}
           </li>
           <li className="item views">
             2 <i className="icons ion-ios-eye" />

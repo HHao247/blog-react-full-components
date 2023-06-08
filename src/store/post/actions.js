@@ -7,11 +7,20 @@ export const ACT_FETCH_ARTICLES_POPULAR = 'ACT_FETCH_ARTICLES_POPULAR';
 export const ACT_FETCH_ARTICLES_PAGING = 'ACT_FETCH_ARTICLES_PAGING';
 export const ACT_FETCH_DETAIL_PAGE = 'ACT_FETCH_DETAIL_PAGE';
 export const ACT_SEARCH = 'ACT_SEARCH';
+export const ACT_FETCH_POST_RELATED = 'ACT_FETCH_POST_RELATED';
 
 export function actFetchSearch(posts) {
 	return {
 		type: ACT_SEARCH,
 		payload: posts,
+	}
+}
+export function actFetchListRelated(posts) {
+	return {
+		type: ACT_FETCH_POST_RELATED,
+		payload: {
+			posts
+		}
 	}
 }
 export function actFetchSearchAsync(queryStrURI) {
@@ -25,7 +34,9 @@ export function actFetchSearchAsync(queryStrURI) {
 export function actGetPostDetail(posts) {
 	return {
 		type: ACT_FETCH_DETAIL_PAGE,
-		payload: posts,
+		payload: {
+			posts,
+		}
 	}
 }
 
@@ -87,5 +98,13 @@ export function actFetchArticlesPagingAsync({ page = 1, inputParams = {} } = {})
 	}
 }
 
+
+export function actFetchListRelatedAsync({ author, id }) {
+	return async (dispatch) => {
+		const response = await postService.getListRelatedPost({ author, id });
+		const posts = response.data.map(mappingPostData);
+		dispatch(actFetchListRelated(posts));
+	}
+}
 
 

@@ -1,5 +1,5 @@
 
-import { ACT_FETCH_ARTICLES_LATEST, ACT_FETCH_ARTICLES_PAGING, ACT_FETCH_ARTICLES_POPULAR, ACT_FETCH_DETAIL_PAGE, ACT_SEARCH } from './actions';
+import { ACT_FETCH_ARTICLES_LATEST, ACT_FETCH_ARTICLES_PAGING, ACT_FETCH_ARTICLES_POPULAR, ACT_FETCH_DETAIL_PAGE, ACT_FETCH_POST_RELATED } from './actions';
 
 
 const initState = {
@@ -10,6 +10,7 @@ const initState = {
     currentPage: 1,
     totalPage: 0
   },
+  postRelated: [],
   postDetail: [],
   postSearch: [],
 };
@@ -36,15 +37,15 @@ function reducer(state = initState, action) {
           list: action.payload.currentPage === 1 ? action.payload.posts : [...state.postsPaging.list, ...action.payload.posts]
         },
       };
+    case ACT_FETCH_POST_RELATED:
+      return {
+        ...state,
+        postRelated: action.payload.posts
+      }
     case ACT_FETCH_DETAIL_PAGE:
       return {
         ...state,
-        postDetail: action.payload,
-      };
-    case ACT_SEARCH:
-      return {
-        ...state,
-        postSearch: action.payload,
+        postDetail: action.payload.posts,
       };
     default:
       return state;

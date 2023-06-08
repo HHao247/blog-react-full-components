@@ -1,12 +1,13 @@
-import { format, mappingPostData } from '../../helpers'
+
 import './post-detail.css'
 import PostDetailComments from "./PostDetailComments"
 import PostDetailRichText from "./PostDetailRichText"
 import PostDetailTags from "./PostDetailTags"
 
 function PostDetailContent({ data }) {
-  const { thumb, shortDesc, detailContent } = data
-  console.log("datadetail", data);
+  const { thumb, detailContent, id } = data
+
+
   return (
     <div className="post-detail__content">
       <div className="thumbnail">
@@ -17,7 +18,7 @@ function PostDetailContent({ data }) {
 
         <PostDetailTags />
 
-        <PostDetailComments />
+        <PostDetailComments id={id} />
       </div>
     </div>
   )

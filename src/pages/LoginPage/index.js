@@ -5,10 +5,15 @@ import Button from '../../components/shared/Button'
 import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 import { actLoginAsync } from '../../store/user/actions'
+import { useNotAuthenticated } from '../../hooks/useNotAuthenticated'
 
 function LoginPage() {
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  useNotAuthenticated();
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -16,7 +21,6 @@ function LoginPage() {
 
   const [message, setMessage] = useState('');
 
-  const history = useHistory();
 
   function handleChangeValue(e) {
     setFormData({

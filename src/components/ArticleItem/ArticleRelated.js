@@ -1,6 +1,8 @@
 import './related-posts.css'
 
 function ArticleRelated() {
+
+
   return (
     <article className="related-post__card">
       <a href="/" className="related-post__title">5 BBQ Recipes to Get Your Summer Started</a>
