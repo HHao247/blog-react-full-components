@@ -1,4 +1,4 @@
-import API from "./api";
+import API from './api';
 
 const commentService = {
   getAll: function (inputParams = {}) {
@@ -8,8 +8,12 @@ const commentService = {
         lang: 'vi',
         order: 'asc',
         per_page: 3
-      },
-    });
+      }
+    })
+  },
+  postNewComment: function (data) {
+    return API.callWithToken().post('/wp/v2/comments', data)
   },
 }
+
 export default commentService;

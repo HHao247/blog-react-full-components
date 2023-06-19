@@ -1,5 +1,6 @@
 import { ACT_FETCH_COMMENTS_PARENT } from "./actions";
 import { ACT_FETCH_COMMENTS_CHILD } from "./actions";
+import { ACT_POST_NEW_COMMENT } from "./actions";
 
 const initState = {
   dataParentComment: {
@@ -29,7 +30,9 @@ function reducer(state = initState, action) {
       };
     case ACT_FETCH_COMMENTS_CHILD:
       const parent = action.payload.parent;
+
       const isFristPage = action.payload.currentPage === 1;
+
       return {
         ...state,
         dataChildComment: {
@@ -46,6 +49,39 @@ function reducer(state = initState, action) {
             total: action.payload.total,
           },
         },
+      };
+
+    case ACT_POST_NEW_COMMENT:
+      const parentChild = action.payload.parent;
+      console.log("action.payload: ", action.payload);
+      console.log(
+        "state.dataChildComment[parentChild]: ",
+        state.dataChildComment[parentChild]
+      );
+      return {
+        ...state,
+        dataParentComment:
+          parentChild === 0
+            ? {
+              ...state.dataParentComment,
+              list: [action.payload, ...state.dataParentComment.list],
+              total: state.dataParentComment.total + 1,
+            }
+            : { ...state.dataParentComment },
+        dataChildComment:
+          parentChild !== 0 && state.dataChildComment
+            ? {
+              [parentChild]: {
+                ...state.dataChildComment[parentChild],
+                list: [
+                  action.payload, ...state.dataChildComment[parentChild].list,
+                ],
+              },
+              ...state.dataChildComment,
+            }
+            : {
+              ...state.dataChildComment
+            },
       };
     default:
       return state;

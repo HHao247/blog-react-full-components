@@ -30,7 +30,7 @@ const postService = {
 		})
 	},
 	getPostRelated: function (author, id) {
-		return this.getAll({ per_page: 3, page: 1, author, id })
+		return this.getAll({ per_page: 3, page: 1, author, exclude: id })
 	},
 
 }

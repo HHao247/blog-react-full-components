@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 export function getQueryStr(name, locationSearch) {
   return new URLSearchParams(locationSearch).get(name)
@@ -91,6 +92,7 @@ export function renderCategories(categories, categoriesId) {
     (list, item) => ({ ...list, [item.id]: item }),
     {}
   );
+
   if (!mapCategories) {
     return <></>
   }
@@ -98,9 +100,15 @@ export function renderCategories(categories, categoriesId) {
     categoriesId.map((categoriesId) => {
       return (
         <li key={categoriesId}>
-          <a href="/" className="btn btn-category">
+          <Link
+            className="btn btn-category"
+            to={`/category/${mapCategories[categoriesId].name}`}
+          >
             {mapCategories[categoriesId].name}
-          </a>
+          </Link>
+          {/* <a href="/" className="btn btn-category">
+            {mapCategories[categoriesId].name}
+          </a> */}
         </li>
       );
     })

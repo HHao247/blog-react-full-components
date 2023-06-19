@@ -40,13 +40,6 @@ export function actGetPostDetail(posts) {
 	}
 }
 
-export function actGetPostDetailAsync(slug) {
-	return async (dispatch) => {
-		const response = await postService.getPostDetail(slug);
-		const posts = response.data.map(mappingPostData);
-		dispatch(actGetPostDetail(posts[0]))
-	}
-}
 
 export function actFetchArticlesLatest(posts) {
 	return {
@@ -92,19 +85,20 @@ export function actFetchArticlesPaging({ posts, currentPage, totalPage }) {
 export function actFetchArticlesPagingAsync({ page = 1, inputParams = {} } = {}) {
 	return async (dispatch) => {
 		const response = await postService.getPaging({ page, inputParams });
-		const totalPage = parseInt(response.headers['x-wp-totalpages']);
+		const totalPage = parseInt(response.headers['x-wp-total']);
 		const posts = response.data.map(mappingPostData)
 		dispatch(actFetchArticlesPaging({ posts, currentPage: page, totalPage }))
 	}
 }
 
 
-export function actFetchListRelatedAsync({ author, id }) {
+export function actGetPostDetailAsync(slug) {
 	return async (dispatch) => {
-		const response = await postService.getListRelatedPost({ author, id });
+		const response = await postService.getPostDetail(slug);
 		const posts = response.data.map(mappingPostData);
-		dispatch(actFetchListRelated(posts));
+		const responseRelated = await postService.getPostRelated({ author: posts[0].author, id: posts[0].id });
+		const postsRelated = responseRelated.data.map(mappingPostData);
+		dispatch(actGetPostDetail(posts[0]))
+		dispatch(actFetchListRelated(postsRelated))
 	}
 }
-
-

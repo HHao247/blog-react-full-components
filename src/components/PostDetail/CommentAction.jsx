@@ -1,19 +1,37 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actFetchCommentsAsync } from '../../store/comment/actions';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { actFetchCommentAsync } from "../../store/comment/actions";
 
-
-function CommentAction(props) {
+function CommentAction({ restTotal, parent, currentPage, postId }) {
   const dispatch = useDispatch();
-
-  const { currentPage, restTotal, parent, postId } = props
-
-  function handleLoadMore(e) {
+  console.log("hao id", postId);
+  const handleLoadMore = (e) => {
     e.preventDefault();
-    dispatch(actFetchCommentsAsync({ post: postId, parent, currentPage: currentPage + 1 }).then(() => {
-    }))
+    dispatch(
+      actFetchCommentAsync({ postId, currentPage: currentPage + 1, parent })
+    );
+  };
+
+
+
+  if (parent === 0) {
+    return (
+      <div >
+        <a href="/" onClick={handleLoadMore}>
+          <i className="fas fa-share fa-flip-vertical" /> Xem thêm {restTotal} câu trả lời
+        </a>
+      </div>
+    );
+  } else {
+    return (
+      <div className="comments__hidden">
+        <a href="/" onClick={handleLoadMore}>
+          <i className="fas fa-share fa-flip-vertical"></i> Xem thêm {restTotal} câu trả lời
+        </a>
+      </div>
+    );
   }
-  return <button onClick={handleLoadMore}>Xem thêm {restTotal} bình luận</button>;
+
 }
 
 export default CommentAction;

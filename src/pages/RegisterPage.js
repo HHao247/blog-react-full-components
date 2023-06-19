@@ -31,7 +31,7 @@ function RegisterPage() {
       [e.target.name]: e.target.value
     });
   }
-  //test
+
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(actRegisterAsync(formData)).then((response) => {

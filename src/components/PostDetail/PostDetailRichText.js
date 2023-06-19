@@ -31,7 +31,6 @@ function PostDetailRichText({ detailContent }) {
           </ol>
         </li>
       </ol> */}
-
       {<Markup content={detailContent} />}
     </div>
   )

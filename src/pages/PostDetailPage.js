@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { actGetPostDetailAsync } from "../store/post/actions"
 import IconLoading from "../components/shared/IconLoading"
+import style from '../../src/components/shared/style.css'
 
 function PostDetailPage() {
   const params = useParams();
@@ -19,8 +20,13 @@ function PostDetailPage() {
     })
   }, [slug]);
   const postDetail = useSelector((state) => state.POST.postDetail);
+  // console.log(postDetail);
   if (loading === false) {
-    return <IconLoading />
+    return (
+      <div className="icon_center">
+        <IconLoading width={250} />
+      </div>
+    )
   }
   return (
     <main className="post-detail">

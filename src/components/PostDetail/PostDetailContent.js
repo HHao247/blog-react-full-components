@@ -5,8 +5,9 @@ import PostDetailRichText from "./PostDetailRichText"
 import PostDetailTags from "./PostDetailTags"
 
 function PostDetailContent({ data }) {
-  const { thumb, detailContent, id } = data
 
+
+  const { thumb, detailContent, id, author } = data
 
   return (
     <div className="post-detail__content">
@@ -18,7 +19,7 @@ function PostDetailContent({ data }) {
 
         <PostDetailTags />
 
-        <PostDetailComments id={id} />
+        <PostDetailComments id={id} author={author} />
       </div>
     </div>
   )

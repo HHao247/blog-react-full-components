@@ -8,9 +8,11 @@ const initState = {
   postsPaging: {
     list: [],
     currentPage: 1,
-    totalPage: 0
+    totalPage: 1
   },
-  postRelated: [],
+  postRelated: {
+    list: []
+  },
   postDetail: [],
   postSearch: [],
 };
@@ -40,7 +42,10 @@ function reducer(state = initState, action) {
     case ACT_FETCH_POST_RELATED:
       return {
         ...state,
-        postRelated: action.payload.posts
+        postRelated: {
+          ...state.postRelated,
+          list: [...action.payload.posts]
+        }
       }
     case ACT_FETCH_DETAIL_PAGE:
       return {
