@@ -4,6 +4,14 @@ import userService from '../../services/userService';
 export const ACT_LOGIN = 'ACT_LOGIN';
 export const ACT_REGISTER = 'ACT_REGISTER';
 export const ACT_LOGOUT = 'ACT_LOGOUT';
+export const ACT_UPDATE_CURRENT_USER = "ACT_UPDATE_CURRENT_USER";
+
+export function actUpdateCurrentUser(currentUser) {
+  return {
+    type: ACT_UPDATE_CURRENT_USER,
+    payload: currentUser
+  }
+}
 
 export function actLogin(token, currentUser) {
   return {
@@ -75,4 +83,23 @@ export function actFetchMeAsync(token) {
       dispatch(actLogout());
     }
   }
+}
+
+export function actChangePasswordAsync(data) {
+  return async (dispatch) => {
+    try {
+      const response = await userService.changePassword(data);
+      console.log("response: ", response);
+      // alert("Change Password Success");
+      return {
+        ok: true,
+        status: response.data.status,
+      };
+    } catch (error) {
+      return {
+        ok: false,
+        error: "Sorry, that password already exists!",
+      };
+    }
+  };
 }

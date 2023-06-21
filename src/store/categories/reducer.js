@@ -6,7 +6,7 @@ const initState = {
   searchCategories: {
     list: [],
     currentPage: 1,
-    totalPage: 9,
+    totalPage: 0,
   },
 }
 function reducer(state = initState, action) {

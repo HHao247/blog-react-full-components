@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actPostNewCommentAsync } from '../../store/comment/actions';
 
-function CommentForm({ handleShowForm = false, postId, authorId, parentComment = false }) {
+function CommentForm({ handleShowForm = false, postId, authorId, parentComment = false, firstTotal = false }) {
 
+  const currentUser = useSelector(state => state.USER.currentUser);
   const [textValue, setTextValue] = useState('');
 
   const dispatch = useDispatch()
 
   const dataNewComment = {
-    author: authorId,
+    author: currentUser?.id,
     content: textValue,
     post: postId,
     parent: (parentComment ? parentComment : 0)
@@ -20,9 +21,7 @@ function CommentForm({ handleShowForm = false, postId, authorId, parentComment =
     if (handleShowForm) {
       handleShowForm(false)
     }
-    // dispatch API
-    dispatch(actPostNewCommentAsync(dataNewComment))
-
+    dispatch(actPostNewCommentAsync(dataNewComment, firstTotal))
   }
 
   return (

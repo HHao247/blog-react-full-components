@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux';
 import { actGetListCategoriesAsync } from './store/categories/actions';
 import { actFetchMeAsync } from './store/user/actions';
 import CategoryPage from './pages/CategoryPage';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route path="/login">
             <LoginPage />
+          </Route>
+          <Route path="/profile">
+            <ProfilePage />
           </Route>
           <Route path="/register">
             <RegisterPage />

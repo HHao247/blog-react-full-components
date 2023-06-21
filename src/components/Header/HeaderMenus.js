@@ -30,7 +30,11 @@ function HeaderMenus() {
           <li className="user">
             {currentUser && (
               <Link to="/login">
-                <i className="icons ion-person" /> {currentUser.name}
+                {/* <i className="icons ion-person" /> {currentUser.name} */}
+                <div style={{ display: "flex" }}>
+                  <img className="img-avatar" src={currentUser?.simple_local_avatar?.full}></img>
+                  <i className="icons ion-person" /> {currentUser.name}
+                </div>
               </Link>
             )}
             <ul>

@@ -1,14 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actFetchCommentAsync } from "../../store/comment/actions";
 
 function CommentAction({ restTotal, parent, currentPage, postId }) {
   const dispatch = useDispatch();
-  console.log("hao id", postId);
+
+  const { id } = useSelector((state) => state.POST.postDetail);
+
+  const dataParentComment = useSelector((state) => (state.COMMENT.dataParentComment));
+
   const handleLoadMore = (e) => {
     e.preventDefault();
     dispatch(
-      actFetchCommentAsync({ postId, currentPage: currentPage + 1, parent })
+      actFetchCommentAsync({ postId: id, currentPage: currentPage + 1, parent, exclude: (dataParentComment.exclude).join(',') })
     );
   };
 

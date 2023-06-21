@@ -70,6 +70,7 @@ export function mappingCategories(item) {
   return {
     id: item.id,
     name: item.name,
+    slug: item.slug
     // childItems: item.child_items ? item.child_items.map(mappingMenuData) : [],
   };
 }
@@ -102,7 +103,7 @@ export function renderCategories(categories, categoriesId) {
         <li key={categoriesId}>
           <Link
             className="btn btn-category"
-            to={`/category/${mapCategories[categoriesId].name}`}
+            to={`/category/${mapCategories[categoriesId].slug}`}
           >
             {mapCategories[categoriesId].name}
           </Link>

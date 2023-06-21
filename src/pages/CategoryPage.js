@@ -13,6 +13,7 @@ function CategoryPage() {
 
   const { list, totalPage, currentPage } = data;
 
+  console.log("tesst data", data);
   const params = useParams();
 
   const slug = params.slug;
@@ -34,10 +35,9 @@ function CategoryPage() {
   };
 
   useEffect(() => {
-    setLoading(true);
-
+    // setLoading(true);
     dispatch(actFetchAllSearchPostByCategoriesAsync({ slug })).then(() => {
-      setLoading(false);
+      setLoading(true);
     });
   }, [slug]);
 

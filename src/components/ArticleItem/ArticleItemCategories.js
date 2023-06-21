@@ -1,13 +1,10 @@
 // import { Link } from 'react-router-dom';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { renderCategories } from "../../helpers";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ArticleItemCategories({ categoriesId }) {
   const categories = useSelector((state) => state.CATEGORIES.categories);
-
-  console.log("h", categories);
   if (categories.length === 0) {
     return <></>
   }

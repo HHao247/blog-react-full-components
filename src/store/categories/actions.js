@@ -16,6 +16,7 @@ export function actGetListCategoriesAsync() {
   return async (dispatch) => {
     const response = await categoryService.getAll();
     const data = response.data;
+    // console.log("haodata", data);
     // console.log("data categories", data);
     const categories = data.map(mappingCategories);
     // console.log("hao tesst cate", categories);

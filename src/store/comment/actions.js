@@ -4,6 +4,10 @@ export const ACT_FETCH_COMMENTS_PARENT = "ACT_FETCH_COMMENTS_PARENT";
 export const ACT_FETCH_COMMENTS_CHILD = "ACT_FETCH_COMMENTS_CHILD";
 export const ACT_POST_NEW_COMMENT = "ACT_POST_NEW_COMMENT";
 
+
+export const ACT_POST_PARENT_COMMENT = "ACT_POST_PARENT_COMMENT";
+export const ACT_POST_CHILD_COMMENT = "ACT_POST_CHILD_COMMENT";
+
 export function actFetchCommentsParent({
   list,
   currentPage,
@@ -39,12 +43,12 @@ export function actFetchCommentsChild({
     },
   };
 }
-export function actPostNewComment({ comment }) {
-  return {
-    type: ACT_POST_NEW_COMMENT,
-    payload: comment,
-  };
-}
+// export function actPostNewComment({ comment }) {
+//   return {
+//     type: ACT_POST_NEW_COMMENT,
+//     payload: comment,
+//   };
+// }
 
 export function actFetchCommentAsync({
   postId = 12,
@@ -83,9 +87,41 @@ export function actFetchCommentAsync({
   };
 }
 
-export function actPostNewCommentAsync(data) {
-  return async (dispatch) => {
-    const response = await commentService.postNewComment(data);
-    dispatch(actPostNewComment({ comment: response.data }));
+// export function actPostNewCommentAsync(data) {
+//   return async (dispatch) => {
+//     const response = await commentService.postNewComment(data);
+//     dispatch(actPostNewComment({ comment: response.data }));
+//   };
+// }
+
+
+
+export function actPostParentComment(data) {
+  return {
+    type: ACT_POST_PARENT_COMMENT,
+    payload: data,
   };
 }
+
+export function actPostChildComment(data, firstTotal) {
+  return {
+    type: ACT_POST_CHILD_COMMENT,
+    payload: {
+      data,
+      firstTotal
+    }
+  };
+}
+
+export function actPostNewCommentAsync(data, firstTotal) {
+  return async (dispatch) => {
+    const response = await commentService.postNewComment(data);
+    if (response.data.parent === 0) {
+      dispatch(actPostParentComment(response.data));
+    } else {
+      dispatch(actPostChildComment(response.data, firstTotal));
+    }
+    // dispatch(actPostNewComment({ comment: response.data }));
+  };
+}
+

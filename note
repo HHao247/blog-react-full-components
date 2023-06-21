@@ -1,17 +1,33 @@
 reactjs render draw html
 
-thêm thay đổi thông tin 
-logout 
-put change password custom  {{base_url}}/wp/v2/users/password
+thêm thay đổi thông tin
+logout
+put change password custom {{base_url}}/wp/v2/users/password
 
-tạo thêm trang profile 
+tạo thêm trang profile
 update profile
 show thông tin cơ bản:
-hiện thị o input thông tin cũ 
+hiện thị o input thông tin cũ
 
 preview imgae before uplaod
-khi ấn vào save 
-1 
+khi ấn vào save
+1
+
 
 
 netifi vercal
+
+
+
+test1
+1. thực hiện loadmore child comment
+2. thêm new child comment
+
+test2
+1. thêm new child comment
+2. thực hiện loadmore child comment
+
+test3
++ có 6 child comment và mỗi lần load 3 comment
+1. thực hiện loadmore child comment => load 3 comment => còn 3 comment
+2. thêm new child comment
