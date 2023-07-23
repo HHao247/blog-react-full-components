@@ -91,7 +91,6 @@ export function actFetchArticlesPagingAsync({ page = 1, inputParams = {} } = {})
 	}
 }
 
-
 export function actGetPostDetailAsync(slug) {
 	return async (dispatch) => {
 		const response = await postService.getPostDetail(slug);
